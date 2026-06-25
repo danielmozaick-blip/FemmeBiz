@@ -1,0 +1,40 @@
+<!-- ============================================================
+     PAGE CONTACT – FEMMEBIZ
+     ============================================================ -->
+
+<div class="section-title"><i class="fas fa-envelope" style="color:var(--rose);"></i> Nous contacter</div>
+
+<div class="tool-card">
+    <h2><i class="fas fa-phone" style="color:var(--rose);"></i> Coordonnées</h2>
+    <p><strong>📞 WhatsApp :</strong> 0847764989</p>
+    <p><strong>📱 Orange Money :</strong> 0847764989</p>
+    <p><strong>📱 Airtel Money :</strong> 0993636691</p>
+</div>
+
+<div class="tool-card">
+    <h2><i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp direct</h2>
+    <p>Cliquez sur le bouton ci-dessous pour nous envoyer un message directement.</p>
+    <a href="https://wa.me/243847764989?text=Bonjour%20FemmeBiz%20!" target="_blank" class="btn" style="display:block;text-align:center;background:#25D366;color:white;text-decoration:none;"><i class="fab fa-whatsapp"></i> Nous écrire sur WhatsApp</a>
+</div>
+
+<div class="tool-card contact-form">
+    <h2><i class="fas fa-paper-plane" style="color:var(--or);"></i> Envoyer un message</h2>
+    <label>👤 Votre nom</label><input type="text" id="contactNom" placeholder="Ex: Marie Kabeya">
+    <label>📱 Votre numéro</label><input type="text" id="contactTel" placeholder="Ex: 0812345678">
+    <label>✉️ Votre message</label><textarea id="contactMessage" rows="4" placeholder="Écrivez votre message ici..."></textarea>
+    <button class="btn btn-success" onclick="envoyerMessage()"><i class="fas fa-paper-plane"></i> Envoyer</button>
+    <div id="contactReponse" style="margin-top:12px;"></div>
+</div>
+
+<script>
+function envoyerMessage(){
+    var n=document.getElementById('contactNom').value.trim();
+    var t=document.getElementById('contactTel').value.trim();
+    var m=document.getElementById('contactMessage').value.trim();
+    var r=document.getElementById('contactReponse');
+    if(!n||!t||!m){r.innerHTML='<span style="color:#E74C3C;">⚠️ Veuillez remplir tous les champs.</span>';return;}
+    window.open('https://wa.me/243997764989?text=Bonjour%20FemmeBiz%20!%0A%0ANom:%20'+encodeURIComponent(n)+'%0ATéléphone:%20'+encodeURIComponent(t)+'%0AMessage:%20'+encodeURIComponent(m),'_blank');
+    r.innerHTML='<span style="color:var(--vert);">✅ Message envoyé ! Nous vous répondrons rapidement.</span>';
+    document.getElementById('contactNom').value='';document.getElementById('contactTel').value='';document.getElementById('contactMessage').value='';
+}
+</script>

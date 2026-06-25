@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FemmeBiz – L'outil intelligent de la femme congolaise</title>
+    
+    <!-- Polices -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Open+Sans:wght@400;600&family=Georgia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FemmeBiz">
+<meta name="theme-color" content="#D6336C">
+</head>
+<body>
+
+    <!-- ============================================================
+         POPUP D'INSCRIPTION
+         ============================================================ -->
+    <div class="popup-overlay" id="popupInscription">
+        <div class="popup-box">
+            <div class="popup-header">
+                <i class="fas fa-crown" style="color: var(--or); font-size: 32px;"></i>
+                <h2>Bienvenue sur FemmeBiz !</h2>
+                <p>Inscrivez-vous gratuitement pour accéder à tous les outils et découvrir les commerçantes près de chez vous.</p>
+            </div>
+            <div class="popup-body">
+                <label>👤 Votre prénom</label>
+                <input type="text" id="inscriptionPrenom" placeholder="Ex: Jeanne">
+                <label>📛 Votre nom</label>
+                <input type="text" id="inscriptionNom" placeholder="Ex: Kabeya">
+                <label>📱 Votre numéro de téléphone</label>
+                <input type="text" id="inscriptionNumero" placeholder="Ex: 0812345678">
+                <button class="btn" onclick="inscrireUtilisateur()">
+                    <i class="fas fa-star"></i> S'inscrire gratuitement
+                </button>
+                <p class="popup-lien" onclick="fermerPopup()">Déjà inscrite ? Continuer sans m'inscrire</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         EN-TÊTE (HEADER)
+         ============================================================ -->
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="logo">
+                <i class="fas fa-crown"></i> FemmeBiz
+            </div>
+            <div class="header-actions">
+                <span id="badgePremium" style="display:none;background:gold;color:black;padding:3px 10px;border-radius:20px;font-size:9px;font-weight:700;margin-right:6px;">👑 Premium</span>
+                <button class="theme-btn" id="notifBtn" title="Notifications" onclick="ouvrirListeNotifications()" style="position:relative;">
+                    <i class="fas fa-bell"></i>
+                    <span id="notifBadge" style="position:absolute;top:-4px;right:-6px;background:#E74C3C;color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:none;align-items:center;justify-content:center;font-weight:700;">0</span>
+                </button>
+                <button class="theme-btn" id="themeToggle" title="Mode sombre / clair">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" title="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="header-center">
+            <h1 class="site-title">FemmeBiz</h1>
+            <p class="site-slogan">✨ L'outil intelligent de la femme congolaise</p>
+        </div>
+        <nav class="main-nav" id="mainNav">
+            <a href="#" onclick="chargerPage('accueil')"><i class="fas fa-home"></i> Accueil</a>
+            <a href="#" onclick="chargerPage('outils')"><i class="fas fa-tools"></i> Outils</a>
+            <a href="#" onclick="chargerPage('premium')"><i class="fas fa-crown"></i> Premium</a>
+            <a href="#" onclick="chargerPage('conseils')"><i class="fas fa-lightbulb"></i> Conseils</a>
+            <a href="#" onclick="chargerPage('a-propos')"><i class="fas fa-info-circle"></i> À propos</a>
+            <a href="#" onclick="chargerPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="#" onclick="chargerPage('admin')"><i class="fas fa-lock"></i> Admin</a>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         CONTENU PRINCIPAL
+         ============================================================ -->
+    <div id="content"></div>
+
+    <!-- ============================================================
+         PIED DE PAGE (FOOTER)
+         ============================================================ -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>FemmeBiz</h2>
+                <p>L'outil intelligent de la femme congolaise</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="chargerPage('a-propos')"><i class="fas fa-info-circle"></i> À propos</a>
+                <a href="#" onclick="chargerPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="#" onclick="chargerPage('mentions-legales')"><i class="fas fa-balance-scale"></i> Mentions légales</a>
+                <a href="#" onclick="chargerPage('politique-confidentialite')"><i class="fas fa-shield-alt"></i> Confidentialité</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 <strong>FemmeBiz</strong> – Tous droits réservés. <strong>RDC</strong>
+            </div>
+            <div class="footer-slogan">
+                "L'outil qui vous accompagne au quotidien."
+            </div>
+            <div class="footer-heart">
+                Fait avec <i class="fas fa-heart"></i> pour les femmes congolaises
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         BOUTON WHATSAPP ROND
+         ============================================================ -->
+    <a href="https://wa.me/243847764989?text=Bonjour%20FemmeBiz%20!" 
+       class="whatsapp-float" 
+       target="_blank" 
+       title="Nous contacter sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ============================================================
+         NAVIGATION BASSE – 5 ONGLETS STATIQUES
+         ============================================================ -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-page="accueil" onclick="chargerPage('accueil')">
+            <i class="fas fa-home"></i>
+            <span>Accueil</span>
+        </button>
+        <button class="nav-item" data-page="outils" onclick="chargerPage('outils')">
+            <i class="fas fa-tools"></i>
+            <span>Outils</span>
+        </button>
+        <button class="nav-item" data-page="premium" onclick="chargerPage('premium')">
+            <i class="fas fa-crown"></i>
+            <span>Premium</span>
+        </button>
+        <button class="nav-item" data-page="conseils" onclick="chargerPage('conseils')">
+            <i class="fas fa-lightbulb"></i>
+            <span>Conseils</span>
+        </button>
+        <button class="nav-item" data-page="a-propos" onclick="chargerPage('a-propos')">
+            <i class="fas fa-user"></i>
+            <span>Propos</span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+    <script src="js/app.js"></script>
+    <script src="js/outils.js"></script>
+    <script src="js/paiement.js"></script>
+    <script src="js/conseils.js"></script>
+    <script src="js/admin.js"></script>
+
+    <!-- Firebase Admin -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBxZrtPsrvaHKY2YO5Mzvb7lngVuCX8z8s",
+            authDomain: "femmebiz-bb301.firebaseapp.com",
+            projectId: "femmebiz-bb301",
+            storageBucket: "femmebiz-bb301.firebasestorage.app",
+            messagingSenderId: "444534480263",
+            appId: "1:444534480263:web:752867129a92f2a14cc722"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script>
+        function inscrireUtilisateur() {
+            const prenom = document.getElementById('inscriptionPrenom').value.trim();
+            const nom = document.getElementById('inscriptionNom').value.trim();
+            const numero = document.getElementById('inscriptionNumero').value.trim();
+            if (!prenom || !nom || !numero) { alert('⚠️ Veuillez remplir tous les champs.'); return; }
+            const utilisateur = { prenom: prenom, nom: nom, numero: numero, date: new Date().toLocaleDateString('fr-FR') };
+            localStorage.setItem('femmeBiz_utilisateur', JSON.stringify(utilisateur));
+            document.getElementById('popupInscription').style.display = 'none';
+            chargerPage('accueil');
+        }
+        
+        function fermerPopup() { document.getElementById('popupInscription').style.display = 'none'; }
+        if (localStorage.getItem('femmeBiz_utilisateur')) { document.getElementById('popupInscription').style.display = 'none'; }
+
+        function chargerPage(page) {
+            fetch('pages/' + page + '.html')
+                .then(response => { if (!response.ok) throw new Error('Page non trouvée'); return response.text(); })
+                .then(data => {
+                    document.getElementById('content').innerHTML = data;
+                    document.querySelectorAll('.bottom-nav .nav-item').forEach(item => { item.classList.remove('active'); if (item.dataset.page === page) item.classList.add('active'); });
+                    document.getElementById('mainNav').classList.remove('open');
+                    const content = document.getElementById('content');
+                    content.style.opacity = '0'; content.style.transform = 'translateY(20px)';
+                    setTimeout(() => { content.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; content.style.opacity = '1'; content.style.transform = 'translateY(0)'; }, 50);
+                    setTimeout(remplacerPrenom, 100);
+                    setTimeout(function() { if (typeof afficherBadgePremium === 'function') afficherBadgePremium(); }, 200);
+
+                    if (page === 'commercante') { setTimeout(function() { if (typeof chargerPubsCommercante === 'function') chargerPubsCommercante(); }, 300); }
+                    if (page === 'coiffeuse') { setTimeout(function() { if (typeof chargerPubsCoiffeuse === 'function') chargerPubsCoiffeuse(); }, 300); }
+                    if (page === 'foyer') { setTimeout(function() { if (typeof chargerPubsFoyer === 'function') chargerPubsFoyer(); }, 300); }
+                    if (page === 'bien-etre') { setTimeout(function() { if (typeof chargerPubsBienEtre === 'function') chargerPubsBienEtre(); }, 300); }
+
+                    if (page === 'accueil') {
+                        setTimeout(chargerAstuceDuJour, 100);
+                        setTimeout(afficherTop10, 150);
+                        setTimeout(function() { if (typeof chargerBoutique === 'function') chargerBoutique(); }, 300);
+                        setTimeout(function() { if (typeof chargerCarrousel === 'function') chargerCarrousel(); }, 400);
+                    }
+                    if (page === 'outils' && typeof afficherDettes === 'function') { setTimeout(afficherDettes, 100); }
+                    if (page === 'conseils' && typeof afficherConseils === 'function') { setTimeout(() => afficherConseils('tous'), 100); }
+                    if (page === 'pub-detail') {
+                        setTimeout(function() { if (typeof chargerPubDetail === 'function') chargerPubDetail(); }, 300);
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('content').innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-exclamation-triangle" style="font-size:48px;color:var(--or);"></i><h2 style="margin-top:16px;">Oups ! Page introuvable</h2><p style="color:var(--gris-fonce);">Revenez à l\'accueil pour continuer.</p><button class="btn" onclick="chargerPage(\'accueil\')" style="margin-top:20px;"><i class="fas fa-home"></i> Accueil</button></div>';
+                });
+        }
+
+        function remplacerPrenom() {
+            const utilisateur = JSON.parse(localStorage.getItem('femmeBiz_utilisateur'));
+            if (utilisateur && utilisateur.prenom) { document.querySelectorAll('.prenom-dynamique').forEach(el => { el.textContent = utilisateur.prenom; }); }
+        }
+
+        chargerPage('accueil');
+        window.chargerPage = chargerPage;
+    </script>
+
+</body>
+</html>

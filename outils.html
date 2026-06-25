@@ -1,0 +1,176 @@
+<!-- ============================================================
+     PAGE OUTILS – FEMMEBIZ
+     11 outils
+     ============================================================ -->
+
+<div class="section-title"><i class="fas fa-tools"></i> Vos outils</div>
+
+<p style="font-size:12px;color:var(--gris-fonce);margin-bottom:12px;">Cliquez sur un outil pour l'utiliser. Tous nos outils sont gratuits !</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
+    <button class="btn" onclick="afficherOutil('marge')" style="padding:10px 4px;font-size:11px;">📊 Marge</button>
+    <button class="btn" onclick="afficherOutil('prix-revient')" style="padding:10px 4px;font-size:11px;">📊 Prix revient</button>
+    <button class="btn" onclick="afficherOutil('epargne')" style="padding:10px 4px;font-size:11px;">💰 Épargne</button>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
+    <button class="btn" onclick="afficherOutil('prix-gros')" style="padding:10px 4px;font-size:11px;">📦 Prix gros</button>
+    <button class="btn" onclick="afficherOutil('convertisseur')" style="padding:10px 4px;font-size:11px;">💱 FC/$</button>
+    <button class="btn" onclick="afficherOutil('benefice')" style="padding:10px 4px;font-size:11px;">📅 Bénéfice</button>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
+    <button class="btn" onclick="afficherOutil('credit')" style="padding:10px 4px;font-size:11px;">🏦 Crédit</button>
+    <button class="btn" onclick="afficherOutil('transport')" style="padding:10px 4px;font-size:11px;">🚛 Transport</button>
+    <button class="btn" onclick="afficherOutil('carnet')" style="padding:10px 4px;font-size:11px;">📋 Carnet</button>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;">
+    <button class="btn" onclick="afficherOutil('agenda')" style="padding:10px 4px;font-size:11px;">📅 Agenda</button>
+    <button class="btn" onclick="afficherOutil('recus')" style="padding:10px 4px;font-size:11px;">📝 Reçus</button>
+</div>
+
+<div id="outil-marge" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-calculator"></i> Calculateur de marge</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Calculez votre bénéfice et votre marge en un clic.</p>
+        <label>💰 Prix d'achat (FC)</label><input type="number" id="prixAchat" placeholder="Ex: 10000">
+        <label>💰 Prix de vente (FC)</label><input type="number" id="prixVente" placeholder="Ex: 15000">
+        <label>🚛 Frais de transport (FC)</label><input type="number" id="fraisTransport" placeholder="Ex: 2000" value="0">
+        <label>📦 Autres frais (FC)</label><input type="number" id="autresFrais" placeholder="Ex: 1000" value="0">
+        <button class="btn btn-calcul" onclick="calculerMarge()"><i class="fas fa-play"></i> Calculer</button>
+        <div class="result-box" id="resultatMarge"><em>Remplissez les champs et cliquez sur Calculer.</em></div>
+    </div>
+</div>
+
+<div id="outil-prix-revient" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-tags"></i> Calculateur prix de revient</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Calculez le prix minimum auquel vendre pour être rentable.</p>
+        <label>💰 Prix d'achat total (FC)</label><input type="number" id="prixAchatTotal" placeholder="Ex: 50000">
+        <label>📦 Quantité d'articles</label><input type="number" id="quantite" placeholder="Ex: 10">
+        <label>🚛 Frais de transport (FC)</label><input type="number" id="fraisTransportRevient" placeholder="Ex: 5000" value="0">
+        <label>📊 Marge souhaitée (%)</label><input type="number" id="margeSouhaitee" placeholder="Ex: 30" value="30">
+        <button class="btn btn-calcul" onclick="calculerPrixRevient()"><i class="fas fa-play"></i> Calculer</button>
+        <div class="result-box" id="resultatPrixRevient"><em>Remplissez les champs et cliquez sur Calculer.</em></div>
+    </div>
+</div>
+
+<div id="outil-epargne" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-piggy-bank"></i> Simulateur d'épargne</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Voyez combien vous pouvez économiser en mettant de côté chaque jour.</p>
+        <label>💰 Montant épargné par jour (FC)</label><input type="number" id="montantEpargne" placeholder="Ex: 2000">
+        <button class="btn btn-calcul" onclick="calculerEpargne()"><i class="fas fa-play"></i> Calculer</button>
+        <div class="result-box" id="resultatEpargne"><em>Remplissez le champ et cliquez sur Calculer.</em></div>
+    </div>
+</div>
+
+<div id="outil-prix-gros" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-boxes"></i> Calculateur prix de gros</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Vous achetez en gros ? Calculez le prix de vente unitaire conseillé.</p>
+        <label>💰 Prix total du lot (FC)</label><input type="number" id="prixLot" placeholder="Ex: 100000">
+        <label>📦 Quantité dans le lot</label><input type="number" id="quantiteLot" placeholder="Ex: 50">
+        <label>🚛 Frais de transport (FC)</label><input type="number" id="fraisTransportGros" placeholder="Ex: 5000" value="0">
+        <label>📊 Marge souhaitée (%)</label><input type="number" id="margeGros" placeholder="Ex: 30" value="30">
+        <button class="btn btn-calcul" onclick="calculerPrixGros()"><i class="fas fa-play"></i> Calculer</button>
+        <div class="result-box" id="resultatPrixGros"><em>Remplissez les champs et cliquez sur Calculer.</em></div>
+    </div>
+</div>
+
+<div id="outil-convertisseur" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-exchange-alt"></i> Convertisseur FC → Dollars</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Utile pour vos achats à l'étranger. Convertissez facilement.</p>
+        <label>💰 Montant en FC</label><input type="number" id="montantFC" placeholder="Ex: 100000">
+        <label>💱 Taux du jour (1$ = X FC)</label><input type="number" id="tauxDollar" placeholder="Ex: 2800" value="2800">
+        <button class="btn btn-calcul" onclick="convertirDollar()"><i class="fas fa-play"></i> Convertir</button>
+        <div class="result-box" id="resultatConvertisseur"><em>Remplissez les champs et cliquez sur Convertir.</em></div>
+    </div>
+</div>
+
+<div id="outil-benefice" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-calendar-alt"></i> Projection de bénéfice</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Visualisez vos gains sur une semaine, un mois, un an.</p>
+        <label>💰 Bénéfice moyen par jour (FC)</label><input type="number" id="beneficeJour" placeholder="Ex: 5000">
+        <button class="btn btn-calcul" onclick="calculerBenefice()"><i class="fas fa-play"></i> Calculer</button>
+        <div class="result-box" id="resultatBenefice"><em>Remplissez le champ et cliquez sur Calculer.</em></div>
+    </div>
+</div>
+
+<div id="outil-credit" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-handshake"></i> Simulateur crédit fournisseur</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Simulez vos remboursements de crédit fournisseur.</p>
+        <label>💰 Montant du crédit (FC)</label><input type="number" id="montantCredit" placeholder="Ex: 50000">
+        <label>📅 Durée de remboursement (mois)</label><input type="number" id="dureeCredit" placeholder="Ex: 3">
+        <button class="btn btn-calcul" onclick="calculerCredit()"><i class="fas fa-play"></i> Calculer</button>
+        <div class="result-box" id="resultatCredit"><em>Remplissez les champs et cliquez sur Calculer.</em></div>
+    </div>
+</div>
+
+<div id="outil-transport" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-truck"></i> Frais de transport par article</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Combien coûte le transport pour chaque article ?</p>
+        <label>🚛 Frais total de transport (FC)</label><input type="number" id="fraisTransportTotal" placeholder="Ex: 10000">
+        <label>📦 Nombre d'articles transportés</label><input type="number" id="nbArticlesTransport" placeholder="Ex: 20">
+        <button class="btn btn-calcul" onclick="calculerTransport()"><i class="fas fa-play"></i> Calculer</button>
+        <div class="result-box" id="resultatTransport"><em>Remplissez les champs et cliquez sur Calculer.</em></div>
+    </div>
+</div>
+
+<div id="outil-carnet" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-book"></i> Carnet de crédit</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Suivez vos dettes clientes et n'oubliez personne.</p>
+        <label>👤 Nom de la cliente</label><input type="text" id="nomClient" placeholder="Ex: Mama Jeanne">
+        <label>💰 Montant dû (FC)</label><input type="number" id="montantDette" placeholder="Ex: 5000">
+        <button class="btn btn-success" onclick="ajouterDette()"><i class="fas fa-plus"></i> Ajouter</button>
+        <div id="listeDettes" style="margin-top:16px;"></div>
+        <div style="margin-top:12px;font-weight:700;font-size:18px;color:var(--rose);" id="totalDettes">Total dû : 0 FC</div>
+        <p id="msgCarnetLimite" style="font-size:11px;color:var(--gris-fonce);margin-top:8px;">💡 Version gratuite : 3 clientes max. <a href="#" onclick="chargerPage('premium')" style="color:var(--rose);font-weight:600;">Premium</a> pour illimité.</p>
+        <p id="msgCarnetPremium" style="display:none;font-size:11px;color:var(--or);margin-top:8px;font-weight:600;">🏅 Premium - Carnet illimité</p>
+    </div>
+</div>
+
+<div id="outil-agenda" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-calendar-check"></i> Agenda rendez-vous</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Pour les coiffeuses : gérez vos rendez-vous clientes.</p>
+        <label>👤 Nom de la cliente</label><input type="text" id="rdvNom" placeholder="Ex: Mama Jeanne">
+        <label>📅 Date</label><input type="date" id="rdvDate">
+        <label>⏰ Heure</label><input type="time" id="rdvHeure">
+        <label>📝 Type de prestation</label><input type="text" id="rdvType" placeholder="Ex: Tresses brésiliennes">
+        <button class="btn btn-success" onclick="ajouterRdv()"><i class="fas fa-plus"></i> Ajouter</button>
+        <div id="listeRdvs" style="margin-top:16px;"></div>
+    </div>
+</div>
+
+<div id="outil-recus" class="outil-box" style="display:none;">
+    <div class="tool-card">
+        <h2><i class="fas fa-receipt"></i> Générateur de reçus</h2>
+        <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Créez un reçu simple à partager avec votre cliente.</p>
+        <label>🏪 Votre nom commercial</label><input type="text" id="recuVendeur" placeholder="Ex: Mama Jeanne">
+        <label>📞 Votre téléphone</label><input type="text" id="recuTel" placeholder="Ex: 0812345678">
+        <label>👤 Nom de la cliente</label><input type="text" id="recuClient" placeholder="Ex: Mama Thérèse">
+        <label>💰 Montant payé (FC)</label><input type="number" id="recuMontant" placeholder="Ex: 5000">
+        <label>📝 Motif du paiement</label><input type="text" id="recuMotif" placeholder="Ex: Achat pagne wax">
+        <button class="btn btn-calcul" onclick="genererRecu()"><i class="fas fa-receipt"></i> Générer le reçu</button>
+        <div class="result-box" id="resultatRecu" style="display:none;"><div id="contenuRecu"></div></div>
+        <div style="margin-top:16px;"><h4 style="margin-bottom:8px;">📋 Historique des reçus</h4><div id="historiqueRecus"></div></div>
+    </div>
+</div>
+
+<div id="outil-message" class="outil-box">
+    <div class="tool-card"><p style="text-align:center;color:var(--gris-fonce);"><i class="fas fa-hand-pointer" style="font-size:30px;color:var(--rose);"></i><br><br><strong>Choisissez un outil ci-dessus pour commencer.</strong></p></div>
+</div>
+
+<script>
+// Afficher badge Premium dans le carnet
+if (localStorage.getItem('femmeBiz_premium') === 'true') {
+    var msgLimite = document.getElementById('msgCarnetLimite');
+    var msgPremium = document.getElementById('msgCarnetPremium');
+    if (msgLimite) msgLimite.style.display = 'none';
+    if (msgPremium) msgPremium.style.display = 'block';
+}
+</script>

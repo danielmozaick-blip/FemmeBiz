@@ -1,0 +1,54 @@
+<!-- ============================================================
+     PAGE PREMIUM – FEMMEBIZ
+     ============================================================ -->
+
+<div class="section-title"><i class="fas fa-crown" style="color:var(--or);"></i> Devenir Premium</div>
+
+<div class="tool-card">
+    <h2 style="color:var(--or);"><i class="fas fa-gem"></i> Avantages Premium</h2>
+    <ul style="list-style:none;line-height:2.4;">
+        <li><i class="fas fa-check-circle" style="color:var(--vert);"></i> 📋 Carnet de crédit illimité</li>
+        <li><i class="fas fa-check-circle" style="color:var(--vert);"></i> 💡 Tous les conseils (20+)</li>
+        <li><i class="fas fa-check-circle" style="color:var(--vert);"></i> 🚫 Sans aucune publicité</li>
+        <li><i class="fas fa-check-circle" style="color:var(--vert);"></i> 📝 Reçus illimités</li>
+        <li><i class="fas fa-check-circle" style="color:var(--vert);"></i> 📞 Support prioritaire</li>
+        <li><i class="fas fa-check-circle" style="color:var(--vert);"></i> 🏅 Badge "Premium" sur votre profil</li>
+    </ul>
+    <p style="font-weight:700;font-size:22px;margin-top:16px;text-align:center;color:var(--rose);">👑 5 000 FC / mois</p>
+</div>
+
+<div class="tool-card" style="border:2px solid var(--or);">
+    <h3 style="color:var(--noir);"><i class="fas fa-hand-holding-usd"></i> 💳 Paiement sécurisé</h3>
+    <p style="font-size:13px;color:var(--gris-fonce);margin-bottom:12px;">Simple, rapide, transparent. Choisissez votre opérateur et suivez les instructions.</p>
+
+    <p style="font-weight:600;margin-bottom:8px;">Étape 1 : Choisissez votre opérateur</p>
+    <div class="operateur-grid">
+        <button class="operateur-btn airtel" onclick="choisirOperateur('airtel','premium')"><i class="fas fa-phone"></i> 📱 Airtel Money</button>
+        <button class="operateur-btn orange" onclick="choisirOperateur('orange','premium')"><i class="fas fa-phone"></i> 📱 Orange Money</button>
+    </div>
+
+    <p style="font-weight:600;margin-top:16px;margin-bottom:8px;">Étape 2 : Suivez les instructions</p>
+    <div class="instructions-paiement" id="instructionsPaiement" style="display:none;"></div>
+
+    <p style="font-weight:600;margin-top:16px;margin-bottom:8px;">Étape 3 : Confirmez votre paiement</p>
+    <p style="font-size:12px;color:var(--gris-fonce);margin-bottom:8px;">Après avoir effectué le paiement, remplissez ce formulaire et envoyez la confirmation avec votre capture d'écran.</p>
+
+    <label>👤 Votre prénom</label><input type="text" id="prenomPaiement" placeholder="Ex: Jeanne">
+    <label>👤 Votre nom</label><input type="text" id="nomPaiement" placeholder="Ex: Kabeya">
+    <label>🚻 Sexe</label>
+    <div style="display:flex;gap:16px;margin-top:6px;"><label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="sexe" value="Féminin" checked> Féminin</label></div>
+    <label>📦 Besoin</label>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;">
+        <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="besoin" value="Premium" checked> Premium (5 000 FC)</label>
+        <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="besoin" value="Détaillante"> Pub Détaillante (5 000 FC)</label>
+        <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="besoin" value="Grossiste"> Pub Grossiste (25 000 FC)</label>
+    </div>
+
+    <button class="btn btn-warning" onclick="confirmerPaiementPremium()"><i class="fab fa-whatsapp"></i> 📱 Confirmer mon paiement sur WhatsApp</button>
+
+    <div class="aide-contact" style="margin-top:16px;">
+        <p>💬 Une question ? Besoin d'aide ?</p>
+        <p>Laissez-nous un message sur WhatsApp, nous vous répondons en quelques minutes.</p>
+        <a href="https://wa.me/243847764989?text=Bonjour%20FemmeBiz%20!%20J'ai%20une%20question." target="_blank"><i class="fab fa-whatsapp"></i> Nous écrire sur WhatsApp</a>
+    </div>
+</div>

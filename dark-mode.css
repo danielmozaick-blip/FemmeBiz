@@ -1,0 +1,227 @@
+/* ============================================================
+   FEMMEBIZ – MODE SOMBRE
+   ============================================================ */
+
+body.dark-mode {
+    background: #0D0D0D;
+    color: #E8E6E3;
+}
+
+/* ============================================================
+   POPUP
+   ============================================================ */
+
+body.dark-mode .popup-overlay { background: rgba(0,0,0,0.85); }
+body.dark-mode .popup-box { background: #141414; border: 1px solid #2A2A2A; }
+body.dark-mode .popup-header h2 { color: #F28B9E; }
+body.dark-mode .popup-header p { color: #AAAAAA; }
+body.dark-mode .popup-body input { background: #1A1A1A; border-color: #333333; color: #E8E6E3; }
+body.dark-mode .popup-body input:focus { border-color: #F28B9E; }
+body.dark-mode .popup-lien { color: #F28B9E; }
+
+/* ============================================================
+   TOASTS
+   ============================================================ */
+
+body.dark-mode .toast { background: #1A1A1A; color: #E8E6E3; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+body.dark-mode .header { background: #141414; border-bottom: 1px solid #2A2A2A; }
+body.dark-mode .logo { color: #F28B9E; }
+body.dark-mode .logo i { color: var(--or); }
+body.dark-mode .site-title { color: #F28B9E; }
+body.dark-mode .site-slogan { color: #AAAAAA; }
+body.dark-mode .theme-btn, body.dark-mode .menu-toggle { color: #CCCCCC; }
+body.dark-mode .theme-btn:hover, body.dark-mode .menu-toggle:hover { color: #F28B9E; }
+body.dark-mode .main-nav { border-top-color: #2A2A2A; }
+body.dark-mode .main-nav a { color: #CCCCCC; }
+body.dark-mode .main-nav a:hover { background: #2A2A2A; color: #F28B9E; }
+body.dark-mode .main-nav a i { color: #F28B9E; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+body.dark-mode .hero { background: linear-gradient(135deg, #1A0A14, #2D0A1A, #1A1A0A); }
+body.dark-mode .hero h1 { color: #F28B9E; }
+body.dark-mode .hero p { color: #CCCCCC; }
+body.dark-mode .btn-hero { background: #F28B9E; color: #0D0D0D; }
+body.dark-mode .btn-hero:hover { background: #FFFFFF; }
+
+/* ============================================================
+   ASTUCE DU JOUR
+   ============================================================ */
+
+body.dark-mode .astuce-jour { background: #1A1A0F; border-left-color: var(--or); }
+body.dark-mode .astuce-jour .astuce-titre { color: var(--or); }
+body.dark-mode .astuce-jour .astuce-texte { color: #AAAAAA; }
+body.dark-mode .astuce-jour .astuce-partager { color: #F28B9E; }
+
+/* ============================================================
+   TOP 10
+   ============================================================ */
+
+body.dark-mode .top10-titre { color: #E8E6E3; }
+body.dark-mode .top10-liste li { background: #141414; }
+body.dark-mode .top10-nom { color: #E8E6E3; }
+body.dark-mode .top10-likes { color: #F28B9E; }
+body.dark-mode .top10-voir-plus { color: #F28B9E; }
+
+/* ============================================================
+   SECTION TITRE
+   ============================================================ */
+
+body.dark-mode .section-title { color: #E8E6E3; }
+body.dark-mode .section-title i { color: #F28B9E; }
+
+/* ============================================================
+   SECTEURS
+   ============================================================ */
+
+body.dark-mode .sector-card { background: #141414; border-color: #2A2A2A; }
+body.dark-mode .sector-card:hover { border-color: #F28B9E; }
+body.dark-mode .sector-card h3 { color: #E8E6E3; }
+body.dark-mode .sector-card p { color: #AAAAAA; }
+
+/* ============================================================
+   BOUTIQUE
+   ============================================================ */
+
+body.dark-mode .boutique-titre { color: #E8E6E3; }
+body.dark-mode .boutique-card { background: #141414; }
+body.dark-mode .boutique-card .boutique-img { background: #1A1A1A; color: #555555; }
+body.dark-mode .boutique-card .boutique-nom { color: #E8E6E3; }
+body.dark-mode .boutique-card .boutique-prix { color: #F28B9E; }
+body.dark-mode .boutique-card .boutique-likes { color: #AAAAAA; }
+body.dark-mode .boutique-voir-plus { color: #F28B9E; }
+
+/* ============================================================
+   BANNIÈRE PUB
+   ============================================================ */
+
+body.dark-mode .banniere-pub { background: linear-gradient(135deg, #2D0A1A, #1A0A14); }
+body.dark-mode .banniere-pub .btn-banniere { background: #F28B9E; color: #0D0D0D; }
+
+/* ============================================================
+   TOOL CARDS
+   ============================================================ */
+
+body.dark-mode .tool-card { background: #141414; border-color: #2A2A2A; }
+body.dark-mode .tool-card h2 { color: #F28B9E; }
+body.dark-mode .tool-card h3 { color: #E8E6E3; }
+body.dark-mode .tool-card h4 { color: #E8E6E3; }
+body.dark-mode .tool-card label { color: #CCCCCC; }
+body.dark-mode .tool-card input, body.dark-mode .tool-card select, body.dark-mode .tool-card textarea { background: #1A1A1A; border-color: #333333; color: #E8E6E3; }
+body.dark-mode .tool-card input:focus, body.dark-mode .tool-card select:focus, body.dark-mode .tool-card textarea:focus { border-color: #F28B9E; }
+
+/* ============================================================
+   RÉSULTATS
+   ============================================================ */
+
+body.dark-mode .result-box { background: #1A1A1A; border-left-color: #F28B9E; }
+body.dark-mode .result-box .btn-fermer { color: #777777; }
+body.dark-mode .result-box .btn-fermer:hover { color: #F28B9E; }
+body.dark-mode .result-box .btn-partager { color: #F28B9E; }
+
+/* ============================================================
+   TABLEAU DETTES
+   ============================================================ */
+
+body.dark-mode .dette-table th { background: linear-gradient(135deg, #8B1A3D, #6B1030); }
+body.dark-mode .dette-table td { border-bottom-color: #2A2A2A; }
+body.dark-mode .dette-table tr:hover td { background: #2A2A2A; }
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+
+body.dark-mode .btn { background: linear-gradient(135deg, #F28B9E, #C42A5E); }
+body.dark-mode .btn-warning { background: linear-gradient(135deg, var(--or), #C49A6C); color: #0D0D0D; }
+body.dark-mode .btn-calcul { background: linear-gradient(135deg, #5A9AD9, #4A80C9); }
+body.dark-mode .btn-success { background: linear-gradient(135deg, #3ECC81, #2ECC71); }
+body.dark-mode .btn-danger { background: linear-gradient(135deg, #F04C3C, #E74C3C); }
+
+/* ============================================================
+   CARROUSEL
+   ============================================================ */
+
+body.dark-mode .carousel-container { background: #141414; border-color: #2A2A2A; }
+body.dark-mode .carousel-slide h4 { color: #E8E6E3; }
+body.dark-mode .carousel-slide p { color: #AAAAAA; }
+
+/* ============================================================
+   BADGE GROSSISTE
+   ============================================================ */
+
+body.dark-mode .badge-grossiste { background: linear-gradient(135deg, var(--or), #B8895E); color: #0D0D0D; }
+
+/* ============================================================
+   PAIEMENT
+   ============================================================ */
+
+body.dark-mode .operateur-btn { background: #141414; border-color: #2A2A2A; color: #E8E6E3; }
+body.dark-mode .operateur-btn:hover { border-color: #F28B9E; }
+body.dark-mode .operateur-btn.actif { background: #2A1F2A; border-color: #F28B9E; }
+body.dark-mode .instructions-paiement { background: #1A1A1A; border-left-color: var(--or); }
+body.dark-mode .instructions-paiement h4 { color: #E8E6E3; }
+body.dark-mode .instructions-paiement ol { color: #CCCCCC; }
+body.dark-mode .instructions-paiement .numero-compte { color: #F28B9E; }
+body.dark-mode .instructions-paiement .capture-ecran { background: #2A2A0A; color: #CCCC88; }
+body.dark-mode .aide-contact { color: #AAAAAA; }
+body.dark-mode .aide-contact a { color: #F28B9E; }
+
+/* ============================================================
+   CATÉGORIES
+   ============================================================ */
+
+body.dark-mode .categorie-intro { color: #AAAAAA; }
+body.dark-mode .pub-card { background: #141414; }
+body.dark-mode .pub-card .pub-img { background: #1A1A1A; color: #555555; }
+body.dark-mode .pub-card .pub-nom { color: #F28B9E; }
+body.dark-mode .pub-card .pub-description { color: #CCCCCC; }
+body.dark-mode .pub-card .pub-localisation { color: #888888; }
+body.dark-mode .pub-card .pub-telephone { color: #E8E6E3; }
+body.dark-mode .pub-card .pub-likes { color: #AAAAAA; }
+
+/* ============================================================
+   ADMIN
+   ============================================================ */
+
+body.dark-mode .admin-card { background: #141414; border-color: #2A2A2A; }
+body.dark-mode .admin-list li { background: #1A1A1A; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+body.dark-mode .main-footer { background: #141414; border-top-color: #2A2A2A; }
+body.dark-mode .footer-brand h2 { color: #F28B9E; }
+body.dark-mode .footer-brand p { color: #AAAAAA; }
+body.dark-mode .footer-links a { color: #F28B9E !important; }
+body.dark-mode .footer-links a:hover { color: #FFB0C0 !important; }
+body.dark-mode .footer-copyright { color: #777777; }
+body.dark-mode .footer-slogan { color: #AAAAAA; }
+body.dark-mode .footer-heart { color: #AAAAAA; }
+body.dark-mode .footer-heart i { color: #F28B9E; }
+
+/* ============================================================
+   NAVIGATION BASSE
+   ============================================================ */
+
+body.dark-mode .bottom-nav { background: #141414; border-top-color: #2A2A2A; }
+body.dark-mode .bottom-nav .nav-item { color: #F28B9E; }
+body.dark-mode .bottom-nav .nav-item i { color: #F28B9E; }
+body.dark-mode .bottom-nav .nav-item:hover { color: #FFB0C0; }
+body.dark-mode .bottom-nav .nav-item.active { color: #FFB0C0; }
+
+/* ============================================================
+   STATUT PREMIUM
+   ============================================================ */
+
+body.dark-mode .statut-premium.gratuit { background: #2A2A2A; color: #AAAAAA; }
+body.dark-mode .statut-premium.premium { background: #2A1F0A; color: var(--or); }
+body.dark-mode .limite-message { background: #2A1F0A; border-left-color: var(--or); }
+body.dark-mode .limite-message a { color: #F28B9E; }

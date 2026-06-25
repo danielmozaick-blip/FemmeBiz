@@ -1,0 +1,135 @@
+<!-- ============================================================
+     PAGE ACCUEIL – FEMMEBIZ
+     ============================================================ -->
+
+<div class="hero">
+    <h1>🌺 Bienvenue, <span class="prenom-dynamique">Mama</span> !</h1>
+    <p>Gagnez plus, perdez moins. L'outil qui vous accompagne au quotidien.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap;">
+        <button class="btn-hero" onclick="chargerPage('outils')">
+            <i class="fas fa-arrow-right"></i> Commencer maintenant
+        </button>
+    </div>
+</div>
+
+<div class="astuce-jour">
+    <div class="astuce-titre">💡 Astuce du jour</div>
+    <div class="astuce-texte" id="astuceTexte">Achetez vos produits en gros et revendez avec 30% de marge minimum. La quantité fait le bénéfice !</div>
+    <span class="astuce-partager" onclick="partagerAstuce()"><i class="fas fa-share-alt"></i> Partager cette astuce</span>
+</div>
+
+<div class="top10-section">
+    <div class="top10-titre"><i class="fas fa-trophy"></i> Top 10 du mois</div>
+    <ul class="top10-liste" id="top10Liste">
+        <li><span class="top10-medaille">🥇</span><span class="top10-nom">Mama Fatima - Grossiste</span><span class="top10-likes"><i class="fas fa-heart"></i> 245</span></li>
+        <li><span class="top10-medaille">🥈</span><span class="top10-nom">Mama Jeanne - Commerçante</span><span class="top10-likes"><i class="fas fa-heart"></i> 189</span></li>
+        <li><span class="top10-medaille">🥉</span><span class="top10-nom">Mama Grâce - Coiffeuse</span><span class="top10-likes"><i class="fas fa-heart"></i> 156</span></li>
+    </ul>
+    <span class="top10-voir-plus" onclick="alert('🏆 Classement complet bientôt disponible !')">Voir le classement complet →</span>
+</div>
+
+<div class="section-title"><i class="fas fa-th-large"></i> Choisissez votre secteur</div>
+<div class="sector-grid">
+    <div class="sector-card" onclick="chargerPage('commercante')"><i class="fas fa-store"></i><h3>🏪 Commerçante</h3><p>Pagnes, cosmétiques...</p></div>
+    <div class="sector-card" onclick="chargerPage('coiffeuse')"><i class="fas fa-cut"></i><h3>✂️ Coiffeuse</h3><p>Tresses, perruques...</p></div>
+    <div class="sector-card" onclick="chargerPage('foyer')"><i class="fas fa-home"></i><h3>🏠 Foyer</h3><p>Budget, économies...</p></div>
+    <div class="sector-card" onclick="chargerPage('bien-etre')"><i class="fas fa-spa"></i><h3>🌸 Bien-être</h3><p>Santé, équilibre...</p></div>
+</div>
+
+<div class="boutique-section">
+    <div class="boutique-titre"><i class="fas fa-shopping-bag"></i> Boutique FemmeBiz</div>
+    <p style="font-size:12px;color:var(--gris-fonce);margin-bottom:10px;">Découvrez les produits de nos commerçantes</p>
+    <div id="boutiqueContainer"><p style="text-align:center;color:var(--gris-fonce);padding:20px;">Chargement...</p></div>
+    <span class="boutique-voir-plus" onclick="chargerPage('commercante')">Voir plus de produits →</span>
+</div>
+
+<div class="banniere-pub">
+    <h3>📢 Votre publicité ici</h3>
+    <p>Vous êtes commerçante, coiffeuse, grossiste ?</p>
+    <p>Affichez votre activité sur FemmeBiz et attirez plus de clientes !</p>
+    <div class="banniere-prix">💰 Détaillante : 5 000 FC/mois &nbsp;|&nbsp; 💰 Grossiste : 25 000 FC/mois</div>
+    <a href="javascript:void(0)" class="btn-banniere" onclick="contacterFemmeBiz('Publicité FemmeBiz')"><i class="fab fa-whatsapp"></i> Nous contacter sur WhatsApp</a>
+</div>
+
+<div class="section-title"><i class="fas fa-star"></i> Publicités en vedette</div>
+<div class="carousel-container" id="carouselPubs">
+    <div class="carousel-slides" id="carouselSlides">
+        <div class="carousel-slide" style="text-align:center;padding:20px;"><p style="color:var(--gris-fonce);">📢 Votre publicité ici !</p></div>
+    </div>
+    <button class="carousel-btn prev" onclick="changerSlide(-1)">‹</button>
+    <button class="carousel-btn next" onclick="changerSlide(1)">›</button>
+</div>
+
+<div class="tool-card" style="background:linear-gradient(135deg,var(--or-clair),#FFF8F0);border:2px solid var(--or);text-align:center;">
+    <h2 style="color:var(--or);"><i class="fas fa-crown"></i> Devenir Premium</h2>
+    <p style="font-weight:600;font-size:14px;">👑 5 000 FC / mois</p>
+    <p style="font-size:12px;color:var(--gris-fonce);">✅ Carnet illimité &nbsp;|&nbsp; ✅ Tous les conseils &nbsp;|&nbsp; ✅ Sans publicité &nbsp;|&nbsp; ✅ Reçus illimités</p>
+    <button class="btn btn-warning" onclick="chargerPage('premium')" style="width:auto;padding:10px 28px;"><i class="fas fa-crown"></i> En savoir plus</button>
+</div>
+<script>
+function partagerAstuce(){
+    var t=document.getElementById('astuceTexte').textContent;
+    partagerSurWhatsApp('💡 Astuce FemmeBiz : '+t);
+}
+
+function chargerBoutique(){
+    var c=document.getElementById('boutiqueContainer');
+    if(!c)return;
+    var pubs=JSON.parse(localStorage.getItem('femmeBiz_pubs')||'[]');
+    var now=new Date();
+    var prods=pubs.filter(function(p){
+        if(p.categorie!=='boutique')return false;
+        var pts=p.dateExpiration.split('/');
+        return new Date(pts[2],pts[1]-1,pts[0])>=now;
+    });
+    if(prods.length===0){c.innerHTML='<p style="text-align:center;color:var(--gris-fonce);padding:10px;">Aucun produit pour le moment.</p>';return;}
+    var h='<div class="boutique-grid">';
+    prods.forEach(function(p){
+        var ph='<div class="boutique-img">🛍️</div>';
+        if(p.photos&&p.photos.length>0)ph='<img src="'+p.photos[0]+'" alt="'+p.nom+'" style="width:100%;height:80px;object-fit:cover;border-radius:12px;">';
+        var tel=p.telephone.replace(/\D/g,'');
+        h+='<div class="boutique-card">'+ph+'<div class="boutique-nom">'+p.nom+'</div><div class="boutique-prix">'+(p.description||'')+'</div><div class="boutique-likes"><i class="fas fa-heart" onclick="liker(\'boutique-'+p.id+'\')"></i> <span id="likes-boutique-'+p.id+'">'+(p.likes||0)+'</span></div><a href="https://wa.me/'+tel+'?text=Bonjour%20je%20suis%20int%C3%A9ress%C3%A9e%20par%20'+encodeURIComponent(p.nom)+'" class="btn-whatsapp-mini" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>';
+    });
+    h+='</div>';c.innerHTML=h;
+}
+
+function chargerCarrousel(){
+    var c=document.getElementById('carouselSlides');
+    if(!c)return;
+    var pubs=JSON.parse(localStorage.getItem('femmeBiz_pubs')||'[]');
+    var now=new Date();
+    var ved=pubs.filter(function(p){
+        if(p.categorie!=='vedette')return false;
+        var pts=p.dateExpiration.split('/');
+        return new Date(pts[2],pts[1]-1,pts[0])>=now;
+    });
+    if(ved.length===0){c.innerHTML='<div class="carousel-slide" style="text-align:center;padding:20px;"><p style="color:var(--gris-fonce);">📢 Votre publicité ici !</p></div>';return;}
+    var h='';
+    ved.forEach(function(p){
+        var ph='';
+        if(p.photos&&p.photos.length>0)ph='<img src="'+p.photos[0]+'" style="width:100%;max-height:180px;object-fit:cover;border-radius:12px;margin-bottom:10px;">';
+        if(p.photos&&p.photos.length>1)ph+='<img src="'+p.photos[1]+'" style="width:100%;max-height:180px;object-fit:cover;border-radius:12px;margin-bottom:10px;">';
+        var tel=p.telephone.replace(/\D/g,'');
+        h+='<div class="carousel-slide" style="padding:16px;">'+ph+'<h4 style="font-size:15px;color:var(--rose);">'+p.nom+'</h4><p style="font-size:12px;color:var(--gris-fonce);">'+(p.description||'')+'</p>';
+        if(p.localisation)h+='<p style="font-size:11px;color:#999;"><i class="fas fa-map-marker-alt"></i> '+p.localisation+'</p>';
+        h+='<p style="font-weight:600;font-size:13px;">📞 '+p.telephone+'</p><a href="https://wa.me/'+tel+'?text=Bonjour%20'+encodeURIComponent(p.nom)+'%20!%20Je%20viens%20de%20FemmeBiz" target="_blank" style="display:inline-block;background:#25D366;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:600;"><i class="fab fa-whatsapp"></i> Contacter sur WhatsApp</a></div>';
+    });
+    c.innerHTML=h;currentSlide=0;updateCarousel();
+}
+
+chargerAstuceDuJour();
+afficherTop10();
+chargerBoutique();
+chargerCarrousel();
+afficherBadgePremium();
+// Popup installation PWA
+window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    window.installPrompt = e;
+    setTimeout(function() {
+        if (confirm('📱 Ajouter FemmeBiz à votre écran d\'accueil pour un accès rapide ?')) {
+            e.prompt();
+        }
+    }, 2000);
+});
+</script>

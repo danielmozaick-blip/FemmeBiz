@@ -1,0 +1,1264 @@
+/* ============================================================
+   FEMMEBIZ – STYLE CLAIR (Partie 1)
+   Structure, header, hero, popup, animations
+   ============================================================ */
+
+:root {
+    --rose: #D6336C;
+    --rose-fonce: #A61B4D;
+    --rose-clair: #FCE4EC;
+    --or: #D4A373;
+    --or-clair: #FDF3E8;
+    --blanc: #FFFFFF;
+    --gris-clair: #F5F2EE;
+    --gris-fonce: #4A4A4A;
+    --noir: #1A1A1A;
+    --vert: #2ECC71;
+    --shadow: 0 8px 30px rgba(0,0,0,0.08);
+    --shadow-hover: 0 12px 40px rgba(214,51,108,0.2);
+    --radius: 20px;
+    --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #FAF7F5;
+    color: var(--noir);
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeInLogo {
+    from { opacity: 0; transform: scale(0.6) rotate(-10deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes slideDownTitle {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInSlogan {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeUpHero {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleBounce {
+    0% { opacity: 0; transform: scale(0.5); }
+    60% { opacity: 1; transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(214,51,108,0.15); }
+    50% { box-shadow: 0 0 40px rgba(214,51,108,0.35); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   POPUP INSCRIPTION
+   ============================================================ */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.popup-box {
+    background: var(--blanc);
+    border-radius: var(--radius);
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: scaleBounce 0.5s ease forwards;
+    box-shadow: var(--shadow-hover);
+}
+
+.popup-header i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    animation: float 2s ease-in-out infinite;
+}
+
+.popup-header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: var(--rose);
+    margin-bottom: 6px;
+}
+
+.popup-header p {
+    font-size: 13px;
+    color: var(--gris-fonce);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.popup-body label {
+    display: block;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--gris-fonce);
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.popup-body input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #eee;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    transition: 0.3s;
+    background: var(--blanc);
+}
+
+.popup-body input:focus {
+    outline: none;
+    border-color: var(--rose);
+    box-shadow: 0 0 0 4px rgba(214,51,108,0.08);
+}
+
+.popup-body .btn {
+    margin-top: 16px;
+}
+
+.popup-lien {
+    font-size: 12px;
+    color: var(--rose);
+    margin-top: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* ============================================================
+   TOASTS (BEAUX MESSAGES)
+   ============================================================ */
+
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    animation: toastIn 0.4s ease forwards;
+    min-width: 250px;
+    text-align: center;
+}
+
+.toast.succes {
+    border-left: 4px solid #2ECC71;
+    color: #1a7a3a;
+}
+
+.toast.erreur {
+    border-left: 4px solid #E74C3C;
+    color: #a01a1a;
+}
+
+.toast i {
+    font-size: 22px;
+}
+
+.toast.succes i { color: #2ECC71; }
+.toast.erreur i { color: #E74C3C; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header {
+    background: var(--blanc);
+    padding: 6px 16px 8px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.4s ease;
+}
+
+.header.hidden { transform: translateY(-100%); }
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--rose);
+    animation: fadeInLogo 1s ease forwards;
+}
+
+.logo i {
+    color: var(--or);
+    margin-right: 6px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.theme-btn, .menu-toggle {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--gris-fonce);
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-btn:hover, .menu-toggle:hover {
+    color: var(--rose);
+    transform: rotate(10deg);
+}
+
+.header-center {
+    text-align: center;
+    padding: 2px 0 4px;
+}
+
+.site-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--rose);
+    animation: slideDownTitle 0.8s ease forwards;
+}
+
+.site-slogan {
+    font-size: 11px;
+    color: var(--gris-fonce);
+    animation: fadeInSlogan 0.8s ease forwards;
+}
+
+/* ===== MENU ===== */
+
+.main-nav {
+    display: none;
+    flex-direction: column;
+    padding-top: 6px;
+    gap: 3px;
+    border-top: 1px solid var(--gris-clair);
+    margin-top: 6px;
+}
+
+.main-nav.open { display: flex; animation: fadeIn 0.3s ease; }
+
+.main-nav a {
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--gris-fonce);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.main-nav a i { width: 20px; color: var(--rose); }
+
+.main-nav a:hover {
+    background: var(--rose-clair);
+    color: var(--rose-fonce);
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   CONTENU
+   ============================================================ */
+
+#content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 68px 16px 20px;
+    min-height: 70vh;
+}
+
+/* ============================================================
+   WHATSAPP FLOATING
+   ============================================================ */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 90px;
+    right: 16px;
+    background: #25D366;
+    color: white;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 25px rgba(37,211,102,0.4);
+    z-index: 998;
+    text-decoration: none;
+    transition: 0.3s;
+    animation: glowPulse 3s ease-in-out infinite, float 3s ease-in-out infinite;
+}
+
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+    background: linear-gradient(135deg, var(--rose), var(--rose-fonce), var(--or));
+    background-size: 300% 300%;
+    border-radius: var(--radius);
+    padding: 32px 20px;
+    text-align: center;
+    color: white;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-hover);
+    animation: shimmer 6s ease-in-out infinite, fadeUpHero 0.9s ease forwards;
+}
+
+.hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 14px;
+    opacity: 0.95;
+    margin-top: 4px;
+}
+
+.btn-hero {
+    background: white;
+    color: var(--rose);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 32px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-hero:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+/* ============================================================
+   ASTUCE DU JOUR
+   ============================================================ */
+
+.astuce-jour {
+    background: linear-gradient(135deg, var(--or-clair), #FFF8F0);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    border-left: 5px solid var(--or);
+    animation: slideInRight 0.6s ease forwards;
+    box-shadow: var(--shadow);
+}
+
+.astuce-jour .astuce-titre {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--or);
+    margin-bottom: 6px;
+}
+
+.astuce-jour .astuce-texte {
+    font-size: 13px;
+    color: var(--gris-fonce);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.astuce-jour .astuce-partager {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--rose);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.astuce-jour .astuce-partager:hover {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   TOP 10
+   ============================================================ */
+
+.top10-section {
+    margin-bottom: 16px;
+    animation: fadeUpHero 0.7s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.top10-titre {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--noir);
+}
+
+.top10-titre i { color: var(--or); }
+
+.top10-liste {
+    list-style: none;
+    padding: 0;
+}
+
+.top10-liste li {
+    background: var(--blanc);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    animation: slideUp 0.4s ease forwards;
+}
+
+.top10-liste li:nth-child(1) { animation-delay: 0.1s; }
+.top10-liste li:nth-child(2) { animation-delay: 0.2s; }
+.top10-liste li:nth-child(3) { animation-delay: 0.3s; }
+
+.top10-liste li:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.top10-medaille { font-size: 22px; width: 30px; text-align: center; }
+.top10-nom { flex: 1; font-weight: 600; font-size: 13px; }
+.top10-likes { font-size: 12px; color: var(--rose); }
+.top10-voir-plus { display: block; text-align: center; margin-top: 8px; font-size: 12px; color: var(--rose); font-weight: 600; cursor: pointer; }
+/* ============================================================
+   FEMMEBIZ – STYLE CLAIR (Partie 2)
+   Secteurs, boutique, bannière, carrousel, outils
+   ============================================================ */
+
+/* ============================================================
+   SECTION TITRE
+   ============================================================ */
+
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--noir);
+    animation: slideUp 0.6s ease forwards;
+}
+
+.section-title i { color: var(--rose); font-size: 18px; }
+
+/* ============================================================
+   SECTEURS
+   ============================================================ */
+
+.sector-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.sector-card {
+    background: var(--blanc);
+    border-radius: var(--radius);
+    padding: 20px 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.sector-card:nth-child(1) { animation: fadeIn 0.6s ease forwards; animation-delay: 0.1s; }
+.sector-card:nth-child(2) { animation: slideUp 0.6s ease forwards; animation-delay: 0.2s; }
+.sector-card:nth-child(3) { animation: scaleBounce 0.6s ease forwards; animation-delay: 0.3s; }
+.sector-card:nth-child(4) { animation: fadeIn 0.6s ease forwards; animation-delay: 0.4s; }
+
+.sector-card:hover { transform: translateY(-5px); border-color: var(--rose); box-shadow: var(--shadow-hover); }
+.sector-card i { font-size: 30px; background: linear-gradient(135deg, var(--rose), var(--or)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; margin-bottom: 4px; }
+.sector-card h3 { font-family: 'Poppins', sans-serif; font-size: 13px; color: var(--noir); }
+.sector-card p { font-size: 10px; color: var(--gris-fonce); margin-top: 2px; }
+
+/* ============================================================
+   BOUTIQUE
+   ============================================================ */
+
+.boutique-section { margin-bottom: 18px; animation: fadeUpHero 0.7s ease forwards; animation-delay: 0.3s; }
+.boutique-titre { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--noir); }
+.boutique-titre i { color: var(--rose); }
+.boutique-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.boutique-card { background: var(--blanc); border-radius: var(--radius); padding: 10px; text-align: center; box-shadow: var(--shadow); transition: 0.3s; cursor: pointer; }
+.boutique-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.boutique-card .boutique-img { width: 100%; height: 80px; background: var(--gris-clair); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 6px; color: var(--gris-fonce); }
+.boutique-card .boutique-nom { font-weight: 600; font-size: 12px; color: var(--noir); margin-bottom: 2px; }
+.boutique-card .boutique-prix { font-weight: 700; font-size: 13px; color: var(--rose); margin-bottom: 4px; }
+.boutique-card .boutique-likes { font-size: 10px; color: var(--gris-fonce); margin-bottom: 6px; }
+.boutique-card .boutique-likes i { color: var(--rose); cursor: pointer; transition: 0.3s; }
+.boutique-card .boutique-likes i:hover { transform: scale(1.3); }
+.boutique-card .btn-whatsapp-mini { display: inline-block; background: #25D366; color: white; font-size: 10px; padding: 4px 10px; border-radius: 20px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+.boutique-card .btn-whatsapp-mini:hover { background: #1da851; transform: scale(1.05); }
+.boutique-voir-plus { display: block; text-align: center; font-size: 12px; color: var(--rose); font-weight: 600; cursor: pointer; margin-top: 4px; }
+
+/* ============================================================
+   BANNIÈRE PUB
+   ============================================================ */
+
+.banniere-pub {
+    background: linear-gradient(135deg, var(--rose-fonce), var(--rose));
+    background-size: 300% 300%;
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    text-align: center;
+    color: white;
+    margin-bottom: 16px;
+    animation: shimmer 6s ease-in-out infinite, fadeUpHero 0.7s ease forwards;
+    animation-delay: 0.4s;
+    box-shadow: var(--shadow-hover);
+}
+
+.banniere-pub h3 { font-family: 'Poppins', sans-serif; font-size: 16px; margin-bottom: 6px; }
+.banniere-pub p { font-size: 13px; margin-bottom: 4px; opacity: 0.95; }
+.banniere-pub .banniere-prix { font-weight: 700; font-size: 14px; margin: 8px 0; }
+.banniere-pub .btn-banniere { display: inline-block; background: white; color: var(--rose); border: none; border-radius: 50px; padding: 10px 24px; font-weight: 700; font-size: 13px; cursor: pointer; text-decoration: none; transition: 0.3s; margin-top: 6px; }
+.banniere-pub .btn-banniere:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+/* ============================================================
+   CARROUSEL
+   ============================================================ */
+
+.carousel-container { position: relative; overflow: hidden; border-radius: var(--radius); margin: 12px 0; background: var(--blanc); box-shadow: var(--shadow); animation: fadeIn 0.7s ease forwards; }
+.carousel-slides { display: flex; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.carousel-slide { min-width: 100%; padding: 14px; text-align: center; }
+.carousel-slide img { width: 100%; max-height: 160px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 8px; }
+.carousel-slide h4 { font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--noir); }
+.carousel-slide p { font-size: 11px; color: var(--gris-fonce); }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 34px; height: 34px; font-size: 14px; cursor: pointer; transition: 0.3s; }
+.carousel-btn:hover { background: var(--rose); transform: translateY(-50%) scale(1.1); }
+.carousel-btn.prev { left: 6px; }
+.carousel-btn.next { right: 6px; }
+
+/* ============================================================
+   TOOL CARDS
+   ============================================================ */
+
+.tool-card { background: var(--blanc); border-radius: var(--radius); padding: 18px 16px; margin-bottom: 12px; box-shadow: var(--shadow); transition: 0.3s; animation: slideUp 0.6s ease forwards; }
+.tool-card:nth-child(1) { animation-delay: 0.1s; }
+.tool-card:nth-child(2) { animation-delay: 0.2s; }
+.tool-card:nth-child(3) { animation-delay: 0.3s; }
+.tool-card:hover { box-shadow: var(--shadow-hover); }
+.tool-card h2 { font-family: 'Poppins', sans-serif; font-size: 16px; color: var(--rose); margin-bottom: 8px; }
+.tool-card h3 { font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--noir); margin-bottom: 6px; }
+.tool-card h4 { font-family: 'Poppins', sans-serif; font-size: 13px; color: var(--noir); margin-bottom: 4px; }
+.tool-card label { font-weight: 600; font-size: 12px; display: block; margin-top: 10px; color: var(--gris-fonce); }
+.tool-card input, .tool-card select, .tool-card textarea { width: 100%; padding: 10px 14px; border: 2px solid #eee; border-radius: var(--radius-sm); font-size: 13px; margin-top: 4px; transition: 0.3s; background: var(--blanc); }
+.tool-card input:focus, .tool-card select:focus, .tool-card textarea:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 4px rgba(214,51,108,0.08); }
+
+/* ============================================================
+   ONGLETS OUTILS
+   ============================================================ */
+
+.onglet-contenu { animation: fadeIn 0.4s ease forwards; }
+.outil-box { animation: fadeIn 0.4s ease forwards; }
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+
+.btn { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); color: white; border: none; border-radius: 50px; padding: 12px 20px; font-weight: 700; font-size: 13px; width: 100%; margin-top: 12px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 20px rgba(214,51,108,0.25); }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(214,51,108,0.35); }
+.btn:active { transform: scale(0.97); }
+.btn i { transition: 0.3s; }
+.btn:hover i { transform: scale(1.2); }
+.btn-calcul { background: linear-gradient(135deg, #4A90D9, #357ABD); box-shadow: 0 4px 20px rgba(74,144,217,0.25); }
+.btn-success { background: linear-gradient(135deg, #2ECC71, #27AE60); box-shadow: 0 4px 20px rgba(46,204,113,0.25); }
+.btn-danger { background: linear-gradient(135deg, #E74C3C, #C0392B); box-shadow: 0 4px 20px rgba(231,76,60,0.25); }
+.btn-warning { background: linear-gradient(135deg, var(--or), #C49A6C); color: var(--noir); box-shadow: 0 4px 20px rgba(212,163,115,0.25); }
+
+/* ============================================================
+   RÉSULTATS
+   ============================================================ */
+
+.result-box { background: var(--gris-clair); border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 12px; border-left: 4px solid var(--rose); animation: fadeIn 0.5s ease forwards; position: relative; }
+.result-box .btn-fermer { position: absolute; top: 6px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; transition: 0.3s; padding: 2px 6px; }
+.result-box .btn-fermer:hover { color: var(--rose); transform: scale(1.2); }
+.result-box .btn-partager { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--rose); font-weight: 600; cursor: pointer; }
+.result-box .btn-telecharger { display: inline-block; margin-top: 8px; margin-right: 8px; font-size: 11px; color: #4A90D9; font-weight: 600; cursor: pointer; }
+
+/* ============================================================
+   TABLEAU DETTES
+   ============================================================ */
+
+.dette-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+.dette-table th { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); color: white; padding: 8px 10px; text-align: left; }
+.dette-table td { padding: 8px 10px; border-bottom: 1px solid var(--gris-clair); }
+.dette-table tr:hover td { background: var(--rose-clair); }
+.btn-payer { background: linear-gradient(135deg, #2ECC71, #27AE60); color: white; border: none; border-radius: 20px; padding: 3px 12px; font-size: 10px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.btn-payer:hover { transform: scale(1.05); }
+/* ============================================================
+   FEMMEBIZ – STYLE CLAIR (Partie 3)
+   Badges, Paiement, Catégories, Admin, Footer, Navigation
+   ============================================================ */
+
+/* ============================================================
+   BADGE GROSSISTE
+   ============================================================ */
+
+.badge-grossiste {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--or), #C49A6C);
+    color: var(--noir);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+}
+
+/* ============================================================
+   PAIEMENT
+   ============================================================ */
+
+.operateur-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.operateur-btn {
+    background: var(--blanc);
+    border: 2px solid #eee;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    animation: scaleBounce 0.5s ease forwards;
+}
+
+.operateur-btn:nth-child(1) { animation-delay: 0.1s; }
+.operateur-btn:nth-child(2) { animation-delay: 0.2s; }
+
+.operateur-btn:hover {
+    border-color: var(--rose);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.operateur-btn.actif {
+    border-color: var(--rose);
+    background: var(--rose-clair);
+}
+
+.operateur-btn i {
+    font-size: 26px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.operateur-btn.airtel i { color: #E21A26; }
+.operateur-btn.orange i { color: #FF6600; }
+
+.instructions-paiement {
+    background: var(--gris-clair);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-top: 12px;
+    border-left: 4px solid var(--or);
+    animation: slideUp 0.5s ease forwards;
+}
+
+.instructions-paiement h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--noir);
+    margin-bottom: 8px;
+}
+
+.instructions-paiement ol {
+    padding-left: 18px;
+    line-height: 2;
+    font-size: 13px;
+    color: var(--gris-fonce);
+}
+
+.instructions-paiement .numero-compte {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--rose);
+    text-align: center;
+    margin: 8px 0;
+}
+
+.instructions-paiement .capture-ecran {
+    background: #FFF3CD;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 10px;
+    font-size: 11px;
+    color: #856404;
+    text-align: center;
+}
+
+.aide-contact {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--gris-fonce);
+}
+
+.aide-contact a {
+    color: var(--rose);
+    font-weight: 600;
+}
+
+/* ============================================================
+   CATÉGORIES
+   ============================================================ */
+
+.categorie-intro {
+    font-size: 14px;
+    color: var(--gris-fonce);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+.pub-card {
+    background: var(--blanc);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    animation: slideUp 0.6s ease forwards;
+}
+
+.pub-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.pub-card .pub-img {
+    width: 100%;
+    height: 150px;
+    background: var(--gris-clair);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: var(--gris-fonce);
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.pub-card .pub-nom {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--rose);
+}
+
+.pub-card .pub-description {
+    font-size: 12px;
+    color: var(--gris-fonce);
+    margin: 4px 0;
+}
+
+.pub-card .pub-localisation {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.pub-card .pub-localisation i {
+    color: var(--rose);
+}
+
+.pub-card .pub-telephone {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--noir);
+    margin-bottom: 8px;
+}
+
+.pub-card .pub-likes {
+    font-size: 12px;
+    color: var(--gris-fonce);
+    margin-bottom: 8px;
+}
+
+.pub-card .pub-likes i {
+    color: var(--rose);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pub-card .pub-likes i:hover {
+    transform: scale(1.3);
+}
+
+.pub-card .btn-whatsapp-pub {
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    font-size: 12px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pub-card .btn-whatsapp-pub:hover {
+    background: #1da851;
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   ADMIN
+   ============================================================ */
+
+.admin-card {
+    background: var(--blanc);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--or);
+    animation: slideUp 0.5s ease forwards;
+}
+
+.admin-list {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-list li {
+    padding: 10px 12px;
+    background: var(--gris-clair);
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.admin-btn {
+    background: linear-gradient(135deg, var(--or), #C49A6C);
+    color: var(--noir);
+    border: none;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 12px;
+}
+
+.admin-btn-success {
+    background: linear-gradient(135deg, #2ECC71, #27AE60);
+    color: white;
+}
+
+.admin-btn-danger {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    color: white;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.main-footer {
+    background: var(--blanc);
+    padding: 20px 16px 12px;
+    border-top: 1px solid var(--gris-clair);
+    margin-top: 28px;
+    text-align: center;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.footer-brand h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: var(--rose);
+    margin-bottom: 2px;
+}
+
+.footer-brand p {
+    font-size: 12px;
+    color: var(--gris-fonce);
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    font-size: 11px;
+    color: var(--rose) !important;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    color: var(--rose-fonce) !important;
+    transform: translateY(-2px);
+}
+
+.footer-links a i {
+    color: var(--rose);
+    margin-right: 4px;
+}
+
+.footer-copyright {
+    font-size: 10px;
+    color: #999;
+}
+
+.footer-slogan {
+    font-size: 11px;
+    color: var(--gris-fonce);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.footer-heart {
+    font-size: 11px;
+    color: var(--gris-fonce);
+    margin-top: 4px;
+}
+
+.footer-heart i {
+    color: var(--rose);
+    animation: float 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   NAVIGATION BASSE – STATIQUE
+   ============================================================ */
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 14px;
+    background: var(--blanc);
+    border-top: 2px solid var(--gris-clair);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 9px;
+    color: var(--rose);
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.bottom-nav .nav-item i {
+    font-size: 18px;
+    margin-bottom: 2px;
+    transition: 0.3s;
+    color: var(--rose);
+}
+
+.bottom-nav .nav-item:hover {
+    color: var(--rose-fonce);
+}
+
+.bottom-nav .nav-item:hover i {
+    transform: scale(1.1);
+}
+
+.bottom-nav .nav-item.active {
+    color: var(--rose-fonce);
+    font-weight: 700;
+}
+
+.bottom-nav .nav-item.active i {
+    transform: scale(1.15);
+}
+
+/* ============================================================
+   STATUT PREMIUM
+   ============================================================ */
+
+.statut-premium {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 50px;
+    display: inline-block;
+    animation: scaleBounce 0.5s ease forwards;
+}
+
+.statut-premium.gratuit {
+    background: var(--gris-clair);
+    color: var(--gris-fonce);
+}
+
+.statut-premium.premium {
+    background: linear-gradient(135deg, #FDF3E8, #FEF9F0);
+    color: var(--or);
+}
+
+.limite-message {
+    background: linear-gradient(135deg, #FDF3E8, #FEF9F0);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-top: 10px;
+    border-left: 4px solid var(--or);
+    font-weight: 600;
+    font-size: 13px;
+    animation: fadeUpHero 0.5s ease forwards;
+}
+
+.limite-message a {
+    color: var(--rose);
+    text-decoration: underline;
+}
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* ============================================================
+   UTILITAIRES
+   ============================================================ */
+
+.text-center { text-align: center; }
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+/* ============================================================
+   LISTE NOTIFICATIONS
+   ============================================================ */
+
+.notif-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 10px 10px;
+}
+
+.notif-panel {
+    background: white;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 400px;
+    max-height: 70vh;
+    overflow-y: auto;
+    animation: scaleBounce 0.3s ease forwards;
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--noir);
+}
+
+.notif-header button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+}
+
+.notif-liste {
+    list-style: none;
+    padding: 0;
+}
+
+.notif-liste li {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    transition: 0.2s;
+    font-size: 12px;
+}
+
+.notif-liste li:hover {
+    background: var(--gris-clair);
+}
+
+.notif-liste li i {
+    font-size: 18px;
+    color: var(--rose);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.notif-liste li .notif-contenu {
+    flex: 1;
+    color: var(--gris-fonce);
+    line-height: 1.4;
+}
+
+.notif-liste li .notif-contenu strong {
+    color: var(--noir);
+}
+
+.notif-liste li .notif-temps {
+    font-size: 10px;
+    color: #999;
+    margin-top: 2px;
+}
+
+.notif-vide {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+}
+
+.notif-vide i {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+/* Badge Premium */
+.badge-premium {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--or), #C49A6C);
+    color: var(--noir);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 6px;
+}
+@keyframes shimmerBadge {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes shimmerBadge {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

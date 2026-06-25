@@ -1,0 +1,61 @@
+/* ============================================================
+   RESPONSIVE – FEMMEBIZ
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .sector-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .boutique-grid { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .hero h1 { font-size: 24px; }
+    .btn-hero { padding: 12px 28px; font-size: 14px; }
+    .logo { font-size: 24px; }
+}
+
+@media (max-width: 480px) {
+    .sector-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .sector-card { padding: 16px 8px; }
+    .sector-card i { font-size: 24px; }
+    .sector-card h3 { font-size: 13px; }
+    .boutique-grid { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    .boutique-card { padding: 8px; }
+    .boutique-card .boutique-img { height: 60px; font-size: 24px; }
+    .boutique-card .boutique-nom { font-size: 10px; }
+    .boutique-card .boutique-prix { font-size: 11px; }
+    .hero { padding: 28px 16px; }
+    .hero h1 { font-size: 20px; }
+    .hero p { font-size: 14px; }
+    .btn-hero { padding: 10px 24px; font-size: 13px; }
+    .tool-card { padding: 16px; }
+    .tool-card h2 { font-size: 16px; }
+    .btn { padding: 12px 16px; font-size: 14px; }
+    .logo { font-size: 20px; }
+    .footer-links { gap: 10px; font-size: 12px; }
+    .whatsapp-float { width: 50px; height: 50px; font-size: 26px; bottom: 80px; right: 12px; }
+    .dette-table { font-size: 12px; }
+    .dette-table th, .dette-table td { padding: 6px 4px; }
+    .operateur-grid { grid-template-columns: 1fr 1fr; }
+    .admin-list li { flex-direction: column; gap: 8px; align-items: stretch; }
+    .popup-box { padding: 24px 16px; }
+    .pub-card .pub-img { height: 120px; font-size: 32px; }
+}
+
+@media (max-width: 360px) {
+    .sector-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .sector-card { padding: 12px 4px; }
+    .sector-card i { font-size: 20px; }
+    .sector-card h3 { font-size: 11px; }
+    .sector-card p { font-size: 10px; }
+    .boutique-grid { grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+    .boutique-card { padding: 6px; }
+    .boutique-card .boutique-img { height: 50px; font-size: 20px; }
+    .boutique-card .boutique-nom { font-size: 9px; }
+    .boutique-card .boutique-prix { font-size: 10px; }
+    .hero h1 { font-size: 18px; }
+    .btn-hero { font-size: 12px; padding: 8px 20px; }
+    .tool-card h2 { font-size: 14px; }
+    .btn { font-size: 12px; padding: 10px 12px; }
+    .logo { font-size: 18px; }
+    .main-nav a { font-size: 13px; padding: 10px 12px; }
+    .footer-links { flex-direction: column; gap: 6px; }
+    .bottom-nav .nav-item { font-size: 8px; }
+    .bottom-nav .nav-item i { font-size: 16px; }
+}

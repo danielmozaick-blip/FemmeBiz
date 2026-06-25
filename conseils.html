@@ -1,0 +1,19 @@
+<!-- ============================================================
+     PAGE CONSEILS – FEMMEBIZ
+     ============================================================ -->
+
+<div class="section-title"><i class="fas fa-lightbulb" style="color:var(--or);"></i> Conseils pratiques</div>
+
+<div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;">
+    <button class="btn" onclick="afficherConseils('tous')" style="flex:1;padding:8px;font-size:12px;">📋 Tous</button>
+    <button class="btn" onclick="afficherConseils('commercante')" style="flex:1;padding:8px;font-size:12px;">🏪 Commerçante</button>
+    <button class="btn" onclick="afficherConseils('coiffeuse')" style="flex:1;padding:8px;font-size:12px;">✂️ Coiffeuse</button>
+    <button class="btn" onclick="afficherConseils('foyer')" style="flex:1;padding:8px;font-size:12px;">🏠 Foyer</button>
+    <button class="btn" onclick="afficherConseils('bien-etre')" style="flex:1;padding:8px;font-size:12px;">🌸 Bien-être</button>
+</div>
+
+<div id="conseilsContainer"><p style="text-align:center;color:var(--gris-fonce);padding:20px;">Chargement...</p></div>
+
+<script>
+if(typeof afficherConseils==='function'){afficherConseils('tous');}else{setTimeout(function(){if(typeof afficherConseils==='function')afficherConseils('tous');},200);}
+</script>
